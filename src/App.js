@@ -1,8 +1,13 @@
 import './App.css';
+import LandingPage from './pages/landing';
 
 function App() {
   return (
-<h1>sleeperPC</h1>
+      <div>
+        <h1>sleeperPC</h1>
+        <LandingPage/>
+      </div>
+
   );
 }
 
