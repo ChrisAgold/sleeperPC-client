@@ -1,6 +1,7 @@
 // import logo from '../assets/images/logo.svg';
 // import logo from '../assets/images/main.svg';
 import Wrapper from '../assets/wrappers/Testing';
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
     return (
@@ -11,10 +12,10 @@ const Landing = () => {
                <div className="container">
                    <div className="info">
                        <h1>
-                           Sleeper  <span>PC</span> APP
+                           Sleeper  <span>PC</span>
                        </h1>
                        <p>Text</p>
-                       <button className="">Login/Register</button>
+                       <button>  <Link to="/register">Login/Register</Link></button>
                    </div>
                </div>
                {/*Add image later*/}
