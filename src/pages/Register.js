@@ -31,19 +31,55 @@
 //     )
 // }
 
+import {createGlobalStyle, ThemeProvider} from 'styled-components';
+import original from "react95/dist/themes/original";
+import ms_sans_serif from "react95/dist/fonts/ms_sans_serif.woff2";
+import ms_sans_serif_bold from "react95/dist/fonts/ms_sans_serif_bold.woff2";
 
-
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
-import { TextField, Button, Cutout } from 'react95';
-import Wrapper from '../assets/wrappers/RegisterPage'
+import {TextField, Button, Cutout} from 'react95';
+//import Wrapper from '../assets/wrappers/RegisterPage'
 
-    const initialState = {
-        name: '',
-        email: '',
-        password: '',
-        isMember: true,
-    }
+const GlobalStyles = createGlobalStyle`
+  @font-face {
+    font-family: 'ms_sans_serif';
+    src: url('${ms_sans_serif}') format('woff2');
+    font-weight: 400;
+    font-style: normal
+  }
+
+  @font-face {
+    font-family: 'ms_sans_serif';
+    src: url('${ms_sans_serif_bold}') format('woff2');
+    font-weight: bold;
+    font-style: normal
+  }
+
+  body {
+    font-family: 'ms_sans_serif';
+    width: 100%;
+    height: 100%;
+background:#c6c6c6;
+  }
+`;
+
+
+const Wrapper = styled.div`
+  padding: 5rem;
+
+  #cutout {
+    padding: 1rem;
+    width: 400px;
+  }
+`;
+
+const initialState = {
+    name: '',
+    email: '',
+    password: '',
+    isMember: true,
+}
 
 export const Register = () => {
     const [values, setValues] = useState(initialState)
@@ -58,24 +94,41 @@ export const Register = () => {
     }
 
     return (
-        <Wrapper>
-        <div style={{ width: 400 }}>
-            <div style={{ display: 'flex' }}>
-                <TextField
-                    placeholder='name...'
-                    onChange={handleChange}
-                    fullWidth
-                />
-
-                <Button  style={{ marginLeft: 4 }}>
-                    <form onSubmit={onSubmit}>Login</form>
-                </Button>
-            </div>
-            <br/>
-            <TextField multiline rows={4} defaultValue='TEXT'fullWidth />
-            <br />
+        <div>
+            <GlobalStyles/>
+            <Wrapper style={{display: 'flex', justifyContent: 'center', alignItems: 'center',}}>
+                <ThemeProvider theme={original}>
+                    <Cutout id='cutout'>
+                        {/*NAME*/}
+                        <TextField
+                            placeholder='name...'
+                            onChange={handleChange}
+                            fullWidth
+                        />
+                        <br/>
+                        {/**/}
+                        <TextField
+                            placeholder='email...'
+                            onChange={handleChange}
+                            fullWidth
+                        />
+                        <br/>
+                        <TextField
+                            placeholder='password...'
+                            onChange={handleChange}
+                            fullWidth
+                        />
+                        <br/>
+                        <Button style={{marginLeft: 4}}>
+                            <form onSubmit={onSubmit}>Login</form>
+                        </Button>
+                        {/*<br/>*/}
+                        {/*<TextField multiline rows={4} defaultValue='TEXT' fullWidth/>*/}
+                        {/*<br/>*/}
+                    </Cutout>
+                </ThemeProvider>
+            </Wrapper>
         </div>
-        </Wrapper>
     );
 };
 
