@@ -12,7 +12,8 @@ code {
     monospace;
 }
 
-/*ERROR PAGE CSS*/
 .full-page {
     min-height: 100vh;
+    background-color:#008080;
 }
+

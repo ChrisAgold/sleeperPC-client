@@ -18,6 +18,6 @@ const Wrapper = styled.main`
     text-decoration: underline;
     text-transform: capitalize;
   }
-`
+  `
 
 export default Wrapper
