@@ -1,5 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {Dashboard,Register,Landing,Error} from './pages'
+import GlobalStyle from './globalStyles';
 
 function App() {
     return (

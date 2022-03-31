@@ -2,19 +2,21 @@
 // import logo from '../assets/images/main.svg';
 import Wrapper from '../assets/wrappers/Testing';
 import { Link } from 'react-router-dom';
+import GlobalStyles from '../globalStyles.js'
 
 const Landing = () => {
     return (
-       <Wrapper>
+        <div>
+            <GlobalStyles/>
+       <Wrapper className="full-page-alt">
            {/*NAV BAR*/}
            <nav>
                {/*ADD NAV LOGO*/}
                <div className="container">
                    <div className="info">
-                       <h1>
-                           Sleeper  <span>PC</span>
-                       </h1>
-                       <p>Text</p>
+                       <span className="sleeper">Sleeper</span><strong className="pc">PC</strong>
+                       <br/>
+                       <br/>
                        <button>  <Link to="/register">Login/Register</Link></button>
                    </div>
                </div>
@@ -22,6 +24,7 @@ const Landing = () => {
                <img/>
            </nav>
        </Wrapper>
+        </div>
     );
 }
 

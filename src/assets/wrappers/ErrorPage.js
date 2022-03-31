@@ -14,7 +14,7 @@ const Wrapper = styled.main`
     color: black;
   }
   a {
-    color: darkred;
+   color:#008080;
     text-decoration: underline;
     text-transform: capitalize;
   }

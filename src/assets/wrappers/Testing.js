@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.main `
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 nav {
   display: flex;
   align-items: center;
@@ -12,7 +16,7 @@ nav {
     }
   }
   p {
-    color: grey;
+    color: black;
   }
 `
 

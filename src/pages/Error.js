@@ -1,8 +1,11 @@
 import Wrapper from '../assets/wrappers/ErrorPage'
 import { Link } from 'react-router-dom'
+import GlobalStyles from '../globalStyles.js'
 
 const Error = () => {
     return (
+        <div>
+            <GlobalStyles/>
         <Wrapper className="full-page">
             <div>
                 <h3>404 PAGE NOT FOUND</h3>
@@ -10,6 +13,7 @@ const Error = () => {
                 <Link to='/'>Back Home</Link>
             </div>
         </Wrapper>
+        </div>
     )
 }
 
