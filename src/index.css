@@ -14,22 +14,50 @@ code {
 
 .full-page {
     min-height: 100vh;
-    background-color:#c6c6c6;
+    background-color: #c6c6c6;
 }
 
-
-.full-page-alt {
+.landing {
     min-height: 100vh;
-    background-color:#008080;
+    background-color: #008080;
+}
+
+.register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px;
 }
 
 /*LOGO STYLES*/
 .sleeper {
     font-weight: 700;
-    font-size: 40px;
+    font-size: 60px;
 }
 .pc {
-    color:darkgray;
+    color: darkgray;
     font-size: 50px;
 }
-/*End LOGO STYLES*/
+/*END LOGO STYLES*/
+
+/*LANDING STYLES*/
+.cutout-container {
+    width: 30%;
+    height: 30%;
+}
+.nav {
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+}
+/*END LANDING STYLES*/
+
+/*ERROR STYLES*/
+.error-cutout {
+    width: 30%;
+    height: 50%;
+}
+.error-container {
+    margin: 80px;
+}
+/*END ERROR STYLES*/
