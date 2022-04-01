@@ -11,15 +11,15 @@ const Error = () => {
     return (
         <div>
             <GlobalStyles/>
-        <Wrapper className="full-page">
+        <Wrapper className="error-page">
             <ThemeProvider theme={original}>
                 <div className="error-cutout">
                 <Cutout id='cutout'>
                     <div className='error-container'>
                 <img style={{width: '50%', height: '50%'}} src={error} alt="error" />;
                 <h3>404 PAGE NOT FOUND</h3>
-                <p>We can't seem to find the page you're looking for.</p>
-                <Link to="/landing">
+                <p>We can't seem to find the page you're looking for......</p>
+                <Link to="/register">
                     <Button style={{margin: 4}}>
                         Register
                     </Button>

@@ -17,6 +17,11 @@ code {
     background-color: #c6c6c6;
 }
 
+.error-page {
+    min-height: 100vh;
+    background-color: #008080;
+}
+
 .landing {
     min-height: 100vh;
     background-color: #008080;
@@ -56,6 +61,7 @@ code {
 .error-cutout {
     width: 30%;
     height: 50%;
+    background-color:#c6c6c6;
 }
 .error-container {
     margin: 80px;
