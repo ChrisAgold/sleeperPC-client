@@ -6,7 +6,6 @@ import {Button, Cutout} from 'react95';
 import {ThemeProvider} from 'styled-components';
 import original from "react95/dist/themes/original";
 
-
 const Error = () => {
     return (
         <div>
