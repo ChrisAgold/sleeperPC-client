@@ -7,6 +7,7 @@ import {TextField, Button, Cutout} from 'react95';
 import Wrapper from '../assets/wrappers/RegisterPage';
 import {Link} from 'react-router-dom';
 
+import { FormRow } from '../components';
 
 const initialState = {
     name: '',
@@ -28,24 +29,34 @@ export const Register = () => {
     }
 
     return (
-        <div>
-            <GlobalStyles/>
+<div>
+           <GlobalStyles/>
             <Wrapper className="register">
                 {/*<ThemeProvider theme={original}>*/}
                 {/*    <Cutout id='cutout'>*/}
 <form className="form" onSubmit={onSubmit}>
-                        <div className="form-row">
-                            <label htmlFor='name' className='form-label'>
-                                name
-                            </label>
-                            <input
-                            type='text'
-                            value={values.name}
-                            name='name'
-                            onChange={handleChange}
-                            className='form-input'
-                            />
-                        </div>
+    <h3>Login</h3>
+    {/*NAME INPUT*/}
+    <FormRow
+    type='text'
+    name='name'
+    value={values.name}
+    handleChange={handleChange}
+    />
+    {/*EMAIL INPUT*/}
+    <FormRow
+        type='email'
+        name='email'
+        value={values.email}
+        handleChange={handleChange}
+    />
+    {/*PASSWORD INPUT*/}
+    <FormRow
+        type='password'
+        name='password'
+        value={values.password}
+        handleChange={handleChange}
+    />
 <button type='submit' className='btn btn-block'>
     submit
 </button>
@@ -95,8 +106,8 @@ export const Register = () => {
                 {/*        </div>*/}
                 {/*    </Cutout>*/}
                 {/*</ThemeProvider>*/}
-            </Wrapper>
-        </div>
+    </Wrapper>
+</div>
     );
 };
 
