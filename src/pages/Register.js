@@ -7,13 +7,14 @@ import {TextField, Button, Cutout} from 'react95';
 import Wrapper from '../assets/wrappers/RegisterPage';
 import {Link} from 'react-router-dom';
 
-import { FormRow } from '../components';
+import { FormRow,Alert } from '../components';
 
 const initialState = {
     name: '',
     email: '',
     password: '',
     isMember: true,
+    showAlert: true,
 }
 
 export const Register = () => {
@@ -36,6 +37,7 @@ export const Register = () => {
                 {/*    <Cutout id='cutout'>*/}
 <form className="form" onSubmit={onSubmit}>
     <h3>Login</h3>
+    {values.showAlert && <Alert/>}
     {/*NAME INPUT*/}
     <FormRow
     type='text'
