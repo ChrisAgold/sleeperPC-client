@@ -21,6 +21,12 @@ export const Register = () => {
     const [values, setValues] = useState(initialState)
     // global state and useNavigate
 
+    // MEMBER
+    const toggleMember = () => {
+        setValues({...values,isMember: !values.isMember})
+    }
+
+    // REGISTER
     const handleChange = (e) => {
         console.log(e.target)
     }
@@ -36,15 +42,17 @@ export const Register = () => {
                 {/*<ThemeProvider theme={original}>*/}
                 {/*    <Cutout id='cutout'>*/}
 <form className="form" onSubmit={onSubmit}>
-    <h3>Login</h3>
+    <h3>{values.isMember ? "Login" : "Register"}</h3>
     {values.showAlert && <Alert/>}
     {/*NAME INPUT*/}
-    <FormRow
-    type='text'
-    name='name'
-    value={values.name}
-    handleChange={handleChange}
-    />
+    {!values.isMember && (
+        <FormRow
+            type='text'
+            name='name'
+            value={values.name}
+            handleChange={handleChange}
+        />
+    )}
     {/*EMAIL INPUT*/}
     <FormRow
         type='email'
@@ -62,6 +70,12 @@ export const Register = () => {
 <button type='submit' className='btn btn-block'>
     submit
 </button>
+    <p>
+        {values.isMember  ? 'Not a member yet?' : 'Already a member?'}
+        <button type="button" onClick={toggleMember} className='register-btn'>
+            {values.isMember  ? 'Register' : 'Login'}
+        </button>
+    </p>
 </form>
                         {/*NAME*/}
                         {/*<TextField*/}
