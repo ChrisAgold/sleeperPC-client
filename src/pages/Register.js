@@ -22,7 +22,7 @@ export const Register = () => {
     // global state and useNavigate
 
     // CONTEXT -> showAlert GLOBAL STATE
-    const {isLoading,showAlert} = useAppContext()
+    const {isLoading,showAlert,displayAlert} = useAppContext()
 
     // MEMBER
     const toggleMember = () => {
@@ -31,11 +31,16 @@ export const Register = () => {
 
     // REGISTER
     const handleChange = (e) => {
-        console.log(e.target)
+        setValues({...values, [e.target.name]: e.target.value})
     }
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log(e.target)
+        const {name,email,password,isMember} = values
+        if(!email || !password || (!isMember && !name)) {
+            displayAlert()
+            return
+        }
+        console.log(values)
     }
 
     return (
