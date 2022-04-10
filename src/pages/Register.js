@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import {TextField, Button, Cutout} from 'react95';
 import Wrapper from '../assets/wrappers/RegisterPage';
 import {Link} from 'react-router-dom';
+import { useAppContext } from '../context/appContext';
 
 import { FormRow,Alert } from '../components';
 
@@ -14,12 +15,14 @@ const initialState = {
     email: '',
     password: '',
     isMember: true,
-    showAlert: true,
 }
 
 export const Register = () => {
     const [values, setValues] = useState(initialState)
     // global state and useNavigate
+
+    // CONTEXT -> showAlert GLOBAL STATE
+    const {isLoading,showAlert} = useAppContext()
 
     // MEMBER
     const toggleMember = () => {
@@ -43,7 +46,7 @@ export const Register = () => {
                 {/*    <Cutout id='cutout'>*/}
 <form className="form" onSubmit={onSubmit}>
     <h3>{values.isMember ? "Login" : "Register"}</h3>
-    {values.showAlert && <Alert/>}
+    {showAlert && <Alert/>}
     {/*NAME INPUT*/}
     {!values.isMember && (
         <FormRow
