@@ -1,9 +1,13 @@
 import Wrapper from '../assets/wrappers/BigSidebar'
+// import {useAppContext} from '../context/appContext'
+import NavLinks from './NavLinks'
 
 const BigSidebar = () => {
     return (
         <Wrapper>
-            <h4>Sidebar</h4>
+            <div>
+                <NavLinks/>
+            </div>
         </Wrapper>
     )
 }
