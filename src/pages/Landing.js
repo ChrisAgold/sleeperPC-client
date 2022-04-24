@@ -17,7 +17,7 @@ const Landing = () => {
                     <div className="cutout-container">
                         <Cutout id='cutout'>
                             {/*NAV BAR*/}
-                            <img style={{marginTop:'20px',width: '25%', height: '25%'}} src={pc} alt="error" />;
+                            <img style={{marginTop:'20px',width: '25%', height: '25%'}} src={pc} />;
                             <nav className="nav">
                                 {/*ADD NAV LOGO*/}
                                 <div>
