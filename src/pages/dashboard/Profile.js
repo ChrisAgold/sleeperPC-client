@@ -11,31 +11,52 @@ const Profile = () => {
     const [lastName, setLastName] = useState(user?.lastName)
     const [location, setLocation] = useState(user?.location)
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     console.log('update user')
-    // }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        // remove while testing
+        // if (!name || !email || !lastName || !location) {
+        //     displayAlert()
+        //     return
+        // }
+        updateUser({name, email, lastName, location})
+    }
 
     return (
         <Wrapper>
-            <form>
+            <form className="form" onSubmit={handleSubmit}>
                 <h3>profile</h3>
-                <FormRow
-                    type="text"
-                    name='name'
-                    value={name}
-                />
-                <FormRow
-                    type="text"
-                    name='email'
-                    value={email}
-                />
-                {/*<FormRow*/}
-                {/*    type="text"*/}
-                {/*    labelText='location'*/}
-                {/*    name='location'*/}
-                {/*    value={location}*/}
-                {/*/>*/}
+                {showAlert && <Alert/>}
+                <div>
+                    <FormRow
+                        type="text"
+                        name='name'
+                        value={name}
+                        handleChange={(e) => setName(e.target.value)}
+                    />
+                    <FormRow
+                        type="text"
+                        labelText='last name'
+                        name='lastName'
+                        value={lastName}
+                        handleChange={(e) => setLastName(e.target.value)}
+                    />
+                    <FormRow
+                        type="email"
+                        name='email'
+                        value={email}
+                        handleChange={(e) => setEmail(e.target.value)}
+                    />
+                    <FormRow
+                        type="text"
+                        labelText='location'
+                        name='location'
+                        value={location}
+                        handleChange={(e) => setLocation(e.target.value)}
+                    />
+                    <button type="submit" disabled={isLoading}>
+                        {isLoading ? 'Please Wait...' : 'save changes'}
+                    </button>
+                </div>
             </form>
         </Wrapper>
     )
