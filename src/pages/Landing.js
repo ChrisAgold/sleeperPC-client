@@ -26,7 +26,7 @@ const Landing = () => {
                                     <br/>
                                     <Link to="/register">
                                         <Button>
-                                            Register
+                                            Login
                                         </Button>
                                     </Link>
                                 </div>
