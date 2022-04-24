@@ -30,12 +30,12 @@ const Profile = () => {
                     name='email'
                     value={email}
                 />
-                <FormRow
-                    type="text"
-                    labelText='location'
-                    name='location'
-                    value={location}
-                />
+                {/*<FormRow*/}
+                {/*    type="text"*/}
+                {/*    labelText='location'*/}
+                {/*    name='location'*/}
+                {/*    value={location}*/}
+                {/*/>*/}
             </form>
         </Wrapper>
     )
