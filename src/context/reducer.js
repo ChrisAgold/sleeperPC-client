@@ -14,6 +14,10 @@ import {
     UPDATE_USER_BEGIN,
     UPDATE_USER_SUCCESS,
     UPDATE_USER_ERROR,
+    HANDLE_CHANGE,
+    CREATE_POST_BEGIN,
+    CREATE_POST_SUCCESS,
+    CREATE_POST_ERROR,
 } from "./actions"
 
 import {initialState} from './appContext'
@@ -45,7 +49,7 @@ const reducer = (state, action) => {
             token: action.payload.token,
             user: action.payload.user,
             userLocation: action.payload.userLocation,
-            jobLocation: action.payload.location,
+            postLocation: action.payload.location,
             showAlert: true,
             alertType: 'success',
             alertText: 'User Created! Redirecting...',
@@ -70,7 +74,7 @@ const reducer = (state, action) => {
             token: action.payload.token,
             user: action.payload.user,
             userLocation: action.payload.userLocation,
-            jobLocation: action.payload.location,
+            postLocation: action.payload.location,
             showAlert: true,
             alertType: 'success',
             alertText: 'Login Successful! Redirecting...',
@@ -95,7 +99,7 @@ const reducer = (state, action) => {
             token: action.payload.token,
             user: action.payload.user,
             userLocation: action.payload.userLocation,
-            jobLocation: action.payload.location,
+            postLocation: action.payload.location,
             showAlert: true,
             alertType: 'success',
             alertText: action.payload.alertText,
@@ -115,7 +119,7 @@ const reducer = (state, action) => {
             ...initialState,
             user: null,
             token: null,
-            jobLocation: '',
+            postLocation: '',
             userLocation: ''
         }
     }
@@ -129,7 +133,7 @@ const reducer = (state, action) => {
             token: action.payload.token,
             user: action.payload.user,
             userLocation: action.payload.userLocation,
-            jobLocation: action.payload.location,
+            postLocation: action.payload.location,
             showAlert: true,
             alertType: 'success',
             alertText: 'User Profile Updated!',
@@ -144,7 +148,33 @@ const reducer = (state, action) => {
             alertText: action.payload.msg,
         }
     }
-
+    if (action.type === HANDLE_CHANGE) {
+        return {
+            ...state,
+            [action.payload.name]: action.payload.value,
+        }
+    }
+if(action.type === CREATE_POST_BEGIN) {
+    return {...state,isLoading:true}
+}
+    if (action.type === CREATE_POST_SUCCESS) {
+        return {
+            ...state,
+            isLoading: false,
+            showAlert: true,
+            alertType: 'success',
+            alertText: 'New Job Created!',
+        }
+    }
+    if (action.type === CREATE_POST_ERROR) {
+        return {
+            ...state,
+            isLoading: false,
+            showAlert: true,
+            alertType: 'danger',
+            alertText: action.payload.msg,
+        }
+    }
     throw new Error(`no such action : ${action.type}`)
 }
 

@@ -18,6 +18,10 @@ import {
     UPDATE_USER_BEGIN,
     UPDATE_USER_SUCCESS,
     UPDATE_USER_ERROR,
+    HANDLE_CHANGE,
+    CREATE_POST_BEGIN,
+    CREATE_POST_SUCCESS,
+    CREATE_POST_ERROR,
 } from "./actions"
 
 const token = localStorage.getItem('token')
@@ -32,7 +36,13 @@ const initialState = {
     user: user ? JSON.parse(user) : null,
     token: token,
     userLocation: userLocation || '',
-    jobLocation: userLocation || '',
+    isEditing: false,
+    editPostId: '',
+    title: '',
+    description: '',
+    postLocation: userLocation || '',
+    postTypeOptions: ['setup', 'advice', 'modern builds', 'retro builds'],
+    postType: 'setup',
 }
 
 const AppContext = React.createContext();
@@ -60,9 +70,9 @@ const AppProvider = ({children}) => {
             return response
         },
         (error) => {
-            console.log(error.response)
+            // console.log(error.response)
             if (error.response.status === 401) {
-                console.log('AUTH ERROR')
+                logoutUser()
             }
             return Promise.reject(error)
         })
@@ -124,15 +134,18 @@ const AppProvider = ({children}) => {
             })
             addUserToLocalStorage({user, token, location})
         } catch (error) {
-            dispatch({
-                type: LOGIN_USER_ERROR,
-                payload: {
-                    msg: error.response.data.msg
-                }
-            })
+            if (error.response.status !== 401) {
+                dispatch({
+                    type: LOGIN_USER_ERROR,
+                    payload: {
+                        msg: error.response.data.msg
+                    }
+                })
+            }
         }
         clearAlert()
     }
+
     const setupUser = async ({currentUser, endPoint, alertText}) => {
         dispatch({type: SETUP_USER_BEGIN})
         try {
@@ -175,8 +188,37 @@ const AppProvider = ({children}) => {
         clearAlert()
     }
 
+    const handleChange = ({name, value}) => {
+        dispatch({type: HANDLE_CHANGE, payload: {name, value}})
+    }
+
+    const createPost = async () => {
+        dispatch({type: CREATE_POST_BEGIN})
+        try {
+            const {title, description, postLocation} = state
+            await authFetch.post('/posts', {
+                title, description, postLocation
+            })
+            dispatch({type:CREATE_POST_SUCCESS})
+        } catch (error) {
+            if(error.response.status === 401) return
+            dispatch({type:CREATE_POST_ERROR,payload:{msg: error.response.data.msg}})
+        }
+        clearAlert()
+    }
+
     return <AppContext.Provider
-        value={{...state, displayAlert, registerUser, loginUser, setupUser, logoutUser, updateUser}}>
+        value={{
+            ...state,
+            displayAlert,
+            registerUser,
+            loginUser,
+            setupUser,
+            logoutUser,
+            updateUser,
+            handleChange,
+            createPost,
+        }}>
         {children}
     </AppContext.Provider>
 }

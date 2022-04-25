@@ -7,13 +7,13 @@ const links = [
     // },
     {
         id: 1,
-        text: 'all jobs',
-        path:'all-jobs',
+        text: 'all posts',
+        path:'all-posts',
     },
     {
         id: 2,
-        text: 'add job',
-        path:'add-job',
+        text: 'add post',
+        path:'add-post',
     },
     {
         id: 3,

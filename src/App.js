@@ -2,8 +2,8 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {Register,Landing,Error,ProtectedRoute} from './pages'
 import GlobalStyle from './globalStyles';
 import {
-    AllJobs,
-    AddJob,
+    AllPosts,
+    AddPost,
     Profile,
     SharedLayout,
     Stats,
@@ -19,8 +19,8 @@ function App() {
                 }
                 >
                     <Route path="stats" element={<Stats/>}/>
-                    <Route path="all-jobs" element={<AllJobs/>}/>
-                    <Route path="add-job" element={<AddJob/>}/>
+                    <Route path="all-posts" element={<AllPosts/>}/>
+                    <Route path="add-post" element={<AddPost/>}/>
                     <Route path="profile" element={<Profile/>}/>
 
                 </Route>
