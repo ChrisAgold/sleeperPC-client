@@ -1,6 +1,9 @@
+import {PostsContainer} from '../../components'
+
 const AllPosts = () => {
-    return (<h1>All Posts Page</h1>
-    )
+    return <>
+        <PostsContainer/>
+    </>
 }
 
 export default AllPosts

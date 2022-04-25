@@ -22,6 +22,8 @@ import {
     CREATE_POST_BEGIN,
     CREATE_POST_SUCCESS,
     CREATE_POST_ERROR,
+    GET_POSTS_BEGIN,
+    GET_POSTS_SUCCESS
 } from "./actions"
 
 const token = localStorage.getItem('token')
@@ -43,6 +45,10 @@ const initialState = {
     postLocation: userLocation || '',
     postTypeOptions: ['setup', 'advice', 'modern builds', 'retro builds'],
     postType: 'setup',
+    posts: [],
+    totalPosts: 0,
+    numOfPages: 1,
+    page: 1,
 }
 
 const AppContext = React.createContext();
@@ -199,13 +205,35 @@ const AppProvider = ({children}) => {
             await authFetch.post('/posts', {
                 title, description, postLocation
             })
-            dispatch({type:CREATE_POST_SUCCESS})
+            dispatch({type: CREATE_POST_SUCCESS})
         } catch (error) {
-            if(error.response.status === 401) return
-            dispatch({type:CREATE_POST_ERROR,payload:{msg: error.response.data.msg}})
+            if (error.response.status === 401) return
+            dispatch({type: CREATE_POST_ERROR, payload: {msg: error.response.data.msg}})
         }
         clearAlert()
     }
+
+    const getPosts = async () => {
+        let url = `/posts`
+        dispatch({type: GET_POSTS_BEGIN})
+        try {
+            const {data} = await authFetch(url)
+            const {posts, totalPosts, numOfPages} = data
+            dispatch({
+                type: GET_POSTS_SUCCESS,
+                payload: {
+                    posts,
+                    totalPosts,
+                    numOfPages
+                },
+            })
+        } catch (error) {
+            console.log(error.response)
+            logoutUser()
+        }
+        clearAlert()
+    }
+
 
     return <AppContext.Provider
         value={{
@@ -218,6 +246,7 @@ const AppProvider = ({children}) => {
             updateUser,
             handleChange,
             createPost,
+            getPosts,
         }}>
         {children}
     </AppContext.Provider>

@@ -18,6 +18,8 @@ import {
     CREATE_POST_BEGIN,
     CREATE_POST_SUCCESS,
     CREATE_POST_ERROR,
+    GET_POSTS_BEGIN,
+    GET_POSTS_SUCCESS
 } from "./actions"
 
 import {initialState} from './appContext'
@@ -154,16 +156,16 @@ const reducer = (state, action) => {
             [action.payload.name]: action.payload.value,
         }
     }
-if(action.type === CREATE_POST_BEGIN) {
-    return {...state,isLoading:true}
-}
+    if (action.type === CREATE_POST_BEGIN) {
+        return {...state, isLoading: true}
+    }
     if (action.type === CREATE_POST_SUCCESS) {
         return {
             ...state,
             isLoading: false,
             showAlert: true,
             alertType: 'success',
-            alertText: 'New Job Created!',
+            alertText: 'New Post Created!',
         }
     }
     if (action.type === CREATE_POST_ERROR) {
@@ -173,6 +175,17 @@ if(action.type === CREATE_POST_BEGIN) {
             showAlert: true,
             alertType: 'danger',
             alertText: action.payload.msg,
+        }
+    }
+    if (action.type === GET_POSTS_BEGIN) {
+        return {...state, isLoading: true, showAlert: false}
+    }
+    if (action.type === GET_POSTS_SUCCESS) {
+        return {
+            ...state, isLoading: false,
+            posts: action.payload.posts,
+            totalPosts: action.payload.totalPosts,
+            numOfPages: action.payload.numOfPages
         }
     }
     throw new Error(`no such action : ${action.type}`)

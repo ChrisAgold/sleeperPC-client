@@ -20,7 +20,7 @@ const Error = () => {
                                 <p>We can't seem to find the page you're looking for......</p>
                                 <Link to="/register">
                                     <Button style={{margin: 4}}>
-                                        Register
+                                        Login
                                     </Button>
                                 </Link>
                             </div>
